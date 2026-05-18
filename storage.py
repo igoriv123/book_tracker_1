@@ -33,6 +33,13 @@ def save_books(books: List[Book]):
         print(f"Ошибка при сохранении данных: {e}")
 
 def add_book_to_list(books: List[Book], new_book: Book) -> bool:
+    """Проверяет уникальность книги и добавляет её в список."""
+
+    for book in books:
+        if book.title.lower() == new_book.title.lower() and book.author.lower() == new_book.author.lower():
+            print("\n ВНИМАНИЕ: Книга с таким названием и автором уже существует в базе данных!")
+            return False 
+    
     books.append(new_book)
     save_books(books)
     return True
